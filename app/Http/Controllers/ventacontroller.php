@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PersonaController extends Controller
+class ventacontroller extends Controller
 {
     public function index()
     {
-        return view('persona.index');
+        return view('venta.index');
     }
 
     public function create(){
-        return view ('persona.create');
+        return view ('venta.create');
     }
-
 }
-

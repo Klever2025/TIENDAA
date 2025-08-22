@@ -15,9 +15,9 @@
         <a href="#">Mi Aplicación</a>
       </div>
       <div class="space-x-6">
-        <a href="#" class="text-white hover:bg-blue-700 px-4 py-2 rounded-md">Gestionar Persona</a>
-        <a href="#" class="text-white hover:bg-blue-700 px-4 py-2 rounded-md">Gestionar Producto</a>
-        <a href="#" class="text-white hover:bg-blue-700 px-4 py-2 rounded-md">Gestionar Venta</a>
+        <a href="{{route('persona.index')}}" class="text-white hover:bg-blue-700 px-4 py-2 rounded-md">Gestionar Persona</a>
+        <a href="{{route('product.index')}}" class="text-white hover:bg-blue-700 px-4 py-2 rounded-md">Gestionar Producto</a>
+        <a href="{{route('venta.index')}}" class="text-white hover:bg-blue-700 px-4 py-2 rounded-md">Gestionar Venta</a>
       </div>
     </div>
   </nav>
