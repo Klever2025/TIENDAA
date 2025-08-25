@@ -6,7 +6,7 @@
   <title>Barra de Navegación</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-blue-400">
 
   <!-- Barra de Navegación -->
   <nav class="bg-blue-600 p-4">
