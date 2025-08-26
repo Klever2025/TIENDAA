@@ -8,7 +8,8 @@ class PersonaController extends Controller
 {
     public function index()
     {
-        return view('persona.index');
+        $personas = Persona::all();
+      return view('persona.index', ['personas' => $personas]);
     }
 
     public function create()
@@ -22,11 +23,11 @@ class PersonaController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'email' => 'required|email|unique:usuarios,email',
+            'email' => 'required|email|unique:persona,email',
             'telefono' => 'nullable|string|max:20',
         ]);
 
-        $persona = Persona::create($request->all());
+        Persona::create($request->all());
 
         // Redirige o retorna una respuesta
         return redirect()->route('persona.index')->with('success', 'Persona creada correctamente.');

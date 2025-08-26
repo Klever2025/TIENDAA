@@ -25,49 +25,70 @@
 
         <!-- Tabla de personas -->
         <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table class="min-w-full table-auto">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">ID</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nombre</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Correo</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Acciones</th>
+            <div class="w-full max-w-5xl bg-white shadow-lg rounded-2xl p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Listado de Personas</h1>
+
+        <!-- Botón Crear Persona -->
+        <div class="mb-4">
+            <a href="{{ route('persona.create') }}" 
+               class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+               ➕ Nueva Persona
+            </a>
+        </div>
+
+        <!-- Tabla -->
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto border-collapse">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-700 uppercase text-sm">
+                        <th class="px-4 py-2 border">ID</th>
+                        <th class="px-4 py-2 border">Nombre</th>
+                        <th class="px-4 py-2 border">Apellido</th>
+                        <th class="px-4 py-2 border">Email</th>
+                        <th class="px-4 py-2 border">Teléfono</th>
+                        <th class="px-4 py-2 border">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Persona 1 -->
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 text-sm text-gray-700">1</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Carlos Mendoza</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">carlos.mendoza@example.com</td>
-                        <td class="px-6 py-4 text-sm">
-                            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">Editar</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300">Eliminar</button>
-                        </td>
-                    </tr>
-                    <!-- Persona 2 -->
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 text-sm text-gray-700">2</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Ana Ruiz</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">ana.ruiz@example.com</td>
-                        <td class="px-6 py-4 text-sm">
-                            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">Editar</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300">Eliminar</button>
-                        </td>
-                    </tr>
-                    <!-- Persona 3 -->
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 text-sm text-gray-700">3</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Luis García</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">luis.garcia@example.com</td>
-                        <td class="px-6 py-4 text-sm">
-                            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">Editar</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300">Eliminar</button>
-                        </td>
-                    </tr>
-                    <!-- Puedes añadir más filas según sea necesario -->
+                    @forelse ($personas as $persona)
+                        <tr class="text-center border-b hover:bg-gray-100">
+                            <td class="px-4 py-2 border">{{ $persona->id }}</td>
+                            <td class="px-4 py-2 border">{{ $persona->nombre }}</td>
+                            <td class="px-4 py-2 border">{{ $persona->apellido }}</td>
+                            <td class="px-4 py-2 border">{{ $persona->email }}</td>
+                            <td class="px-4 py-2 border">{{ $persona->telefono ?? 'No registrado' }}</td>
+                            <td class="px-4 py-2 border space-x-2">
+                                <a href="{{ route('persona.show', $persona->id) }}" 
+                                   class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition">Ver</a>
+                                <a href="{{ route('persona.edit', $persona->id) }}" 
+                                   class="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition">Editar</a>
+                                <form action="{{ route('persona.destroy', $persona->id) }}" 
+                                      method="POST" class="inline-block"
+                                      onsubmit="return confirm('¿Estás seguro de eliminar esta persona?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" 
+                                            class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-4 py-6 text-center text-gray-500">
+                                No hay personas registradas todavía.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
         </div>
 
     </div>

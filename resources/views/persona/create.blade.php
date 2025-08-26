@@ -11,7 +11,8 @@
   <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl p-8">
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Registrar Usuario</h2>
 
-    <form action="#" method="POST" class="space-y-5">
+    <form action="{{route('persona.store')}}" method="POST" class="space-y-5">
+      @csrf
       <!-- Nombre -->
       <div>
         <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
