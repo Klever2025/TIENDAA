@@ -1,76 +1,42 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestionar Ventas</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ventas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-
-  <div class="max-w-7xl mx-auto px-4 py-10">
-
-    <!-- Encabezado -->
-    <div class="text-center mb-8">
-      <h1 class="text-4xl font-bold text-gray-800">Gestionar Ventas</h1>
-      <p class="text-gray-600 text-lg">Listado de ventas registradas.</p>
-    </div>
-
-    <!-- Botón para nueva venta -->
-    <div class="flex justify-end mb-6">
-      <a href="{{route('venta.create')}}" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
-        + Registrar Venta
-      </a>
-    </div>
-
-    <!-- Tabla de ventas -->
-    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-      <table class="min-w-full table-auto">
-        <thead class="bg-gray-200">
-          <tr>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">ID</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Cliente</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Fecha</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Total</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Estado</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Acciones</th>
-          </tr>
+<body class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Lista de Ventas</h1>
+    <a href="{{ route('ventas.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Nueva Venta</a>
+    <table class="w-full mt-4 border">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="p-2 border">ID</th>
+                <th class="p-2 border">Persona</th>
+                <th class="p-2 border">Producto</th>
+                <th class="p-2 border">Cantidad</th>
+                <th class="p-2 border">Venta</th>
+                <th class="p-2 border">Acciones</th>
+            </tr>
         </thead>
         <tbody>
-          <!-- Venta 1 -->
-          <tr class="border-b hover:bg-gray-50">
-            <td class="px-6 py-4 text-sm text-gray-800">1001</td>
-            <td class="px-6 py-4 text-sm text-gray-800">Juan Pérez</td>
-            <td class="px-6 py-4 text-sm text-gray-800">2025-08-20</td>
-            <td class="px-6 py-4 text-sm text-gray-800">$450.00</td>
-            <td class="px-6 py-4 text-sm">
-              <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Pagada</span>
-            </td>
-            <td class="px-6 py-4 text-sm space-x-2">
-              <button class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition">Ver Detalle</button>
-              <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar</button>
-            </td>
-          </tr>
-          <!-- Venta 2 -->
-          <tr class="border-b hover:bg-gray-50">
-            <td class="px-6 py-4 text-sm text-gray-800">1002</td>
-            <td class="px-6 py-4 text-sm text-gray-800">Ana Gómez</td>
-            <td class="px-6 py-4 text-sm text-gray-800">2025-08-21</td>
-            <td class="px-6 py-4 text-sm text-gray-800">$320.00</td>
-            <td class="px-6 py-4 text-sm">
-              <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">Pendiente</span>
-            </td>
-            <td class="px-6 py-4 text-sm space-x-2">
-              <button class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition">Ver Detalle</button>
-              <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar</button>
-            </td>
-          </tr>
-          <!-- Agrega más ventas aquí -->
+            @foreach($ventas as $venta)
+            <tr>
+                <td class="p-2 border">{{ $venta->id }}</td>
+                <td class="p-2 border">{{ $venta->persona->nombre }}</td>
+                <td class="p-2 border">{{ $venta->producto->nombre }}</td>
+                <td class="p-2 border">{{ $venta->cantidad }}</td>
+                <td class="p-2 border">{{ $venta->venta }}</td>
+                <td class="p-2 border flex gap-2">
+                    <a href="{{ route('ventas.show',$venta) }}" class="text-blue-500">Ver</a>
+                    <a href="{{ route('ventas.edit',$venta) }}" class="text-yellow-500">Editar</a>
+                    <form action="{{ route('ventas.destroy',$venta) }}" method="POST" onsubmit="return confirm('¿Eliminar?')">
+                        @csrf @method('DELETE')
+                        <button class="text-red-500">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
         </tbody>
-      </table>
-    </div>
-
-  </div>
-
+    </table>
 </body>
 </html>

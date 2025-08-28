@@ -11,19 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('persona', function (Blueprint $table) {
+        Schema::create('personas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('apellido');
             $table->string('email')->unique();
-            $table->string('telefono')->nullable();          
+            $table->string('telefono')->nullable();
             $table->timestamps();
-            $table->string('apellido')->nullable();
-            $table->string('apellido')->default('');
-Schema::table('personas', function (Blueprint $table) {
-    $table->string('apellido')->nullable()->change();
-});
-
         });
     }
 
@@ -32,6 +25,6 @@ Schema::table('personas', function (Blueprint $table) {
      */
     public function down(): void
     {
-        Schema::dropIfExists('persona');
+        Schema::dropIfExists('personas');
     }
 };

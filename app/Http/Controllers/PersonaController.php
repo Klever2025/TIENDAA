@@ -60,4 +60,5 @@ class PersonaController extends Controller
         $persona->delete();
         return redirect()->route('persona.index')->with('success', 'Persona eliminada correctamente.');
     }
+    
 }

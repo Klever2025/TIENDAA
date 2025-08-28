@@ -22,3 +22,4 @@ Route::resource('productos', ProductoController::class);
 
 Route::get('/venta', [ventaController::class, 'index'])->name('venta.index');
 Route::get('/venta/create', [ventacontroller::class, 'create'])->name('venta.create');
+Route::resource('ventas', VentaController::class);
