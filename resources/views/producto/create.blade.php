@@ -9,7 +9,7 @@
   <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
     <h1 class="text-2xl font-bold mb-4">Crear Producto</h1>
 
-    <form action="{{ route('producto.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('productos.store') }}" method="POST" class="space-y-4">
       @csrf
       <div>
         <label class="block">Nombre</label>
@@ -29,7 +29,7 @@
       </div>
 
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Guardar</button>
-      <a href="{{ route('producto.index') }}" class="ml-2 text-gray-600">Cancelar</a>
+      <a href="{{ route('productos.index') }}" class="ml-2 text-gray-600">Cancelar</a>
     </form>
   </div>
 </body>

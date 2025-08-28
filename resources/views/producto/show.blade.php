@@ -15,7 +15,7 @@
     <p><strong>Stock:</strong> {{ $producto->stock }}</p>
 
     <div class="mt-4">
-      <a href="{{ route('producto.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded">Volver</a>
+      <a href="{{ route('productos.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded">Volver</a>
     </div>
   </div>
 </body>

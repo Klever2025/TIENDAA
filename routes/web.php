@@ -15,10 +15,10 @@ Route::get('/persona/{id}', [PersonaController::class, 'show'])->name('persona.s
 Route::get('/persona/{id}/edit', [PersonaController::class, 'edit'])->name('persona.edit');
 Route::put('/persona/{id}', [PersonaController::class, 'update'])->name('persona.update');
 Route::delete('/persona/{id}', [PersonaController::class, 'destroy'])->name('persona.destroy');
+Route::resource('personas', PersonaController::class);
 
-// Route::get('/producto', [ProductController::class, 'index'])->name('product.index');
-// Route::get('/producto/create', [ProductController::class, 'create'])->name('product.create');
-Route::resource('producto', ProductoController::class);
+
+Route::resource('productos', ProductoController::class);
 
 Route::get('/venta', [ventaController::class, 'index'])->name('venta.index');
 Route::get('/venta/create', [ventacontroller::class, 'create'])->name('venta.create');
