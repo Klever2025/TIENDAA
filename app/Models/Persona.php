@@ -14,6 +14,7 @@ class Persona extends Model
 
     protected $fillable = [
         'nombre',
+        'apellido',
         'email',
         'telefono',
     ];

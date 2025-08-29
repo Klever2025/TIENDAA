@@ -14,17 +14,20 @@
                 <th class="p-2 border">Persona</th>
                 <th class="p-2 border">Producto</th>
                 <th class="p-2 border">Cantidad</th>
+                <th class="p-2 border">Precio</th>
                 <th class="p-2 border">Venta</th>
                 <th class="p-2 border">Acciones</th>
+               
             </tr>
         </thead>
         <tbody>
             @foreach($ventas as $venta)
             <tr>
                 <td class="p-2 border">{{ $venta->id }}</td>
-                <td class="p-2 border">{{ $venta->persona->nombre }}</td>
+                <td class="p-2 border">{{ $venta->persona->nombre }}{{ $venta->persona->apellido }} </td>
                 <td class="p-2 border">{{ $venta->producto->nombre }}</td>
                 <td class="p-2 border">{{ $venta->cantidad }}</td>
+                <td class="p-2 border">{{ $venta->Producto->precio}}</td>
                 <td class="p-2 border">{{ $venta->venta }}</td>
                 <td class="p-2 border flex gap-2">
                     <a href="{{ route('ventas.show',$venta) }}" class="text-blue-500">Ver</a>
